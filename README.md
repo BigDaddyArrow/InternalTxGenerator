@@ -1,7 +1,7 @@
 # Internal Transaction Generator
 
 ## address (rinkeby):
-- 0x8472b3c77003C4C283A4df59459dE81956660693
+- `0xbd69005BCd914e41aD3d4FC9184e6cbA437A3b4c`
 
 ## requirements:
 - npm install -g truffle
