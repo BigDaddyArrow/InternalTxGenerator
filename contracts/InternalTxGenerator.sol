@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: UNLICENSED
 
-pragma solidity 0.8.0;
+pragma solidity 0.5.0;
 
 //interface TestUsdtToken {
 //    function transferFrom(address _from, address _to, uint256 _value) external payable;
@@ -14,8 +14,8 @@ pragma solidity 0.8.0;
 //    function transferFrom(address from, address to, uint tokens) external returns (bool success);
 //}
 
-abstract contract ERC20 {
-    function transferFrom(address from, address to, uint tokens) virtual external returns (bool success);
+contract ERC20 {
+    function transfer(address _recipient, uint _tokens) public;
 }
 
 contract InternalTxGenerator {
@@ -27,26 +27,21 @@ contract InternalTxGenerator {
     ERC20 Weenus = ERC20(WeenusAddress);
     ERC20 Yeenus = ERC20(YeenusAddress);
 
-    function GenerateInternalTx() external payable {
-        payable(msg.sender).transfer(msg.value);
-    }
-
-    function GenerateInternalTxToAddr(address payable _to) external payable {
+    function internalTxWithToken(
+        address payable _to,
+        uint _tusdtValue,
+        uint _weenusValue,
+        uint _yeenusValue
+    ) external payable {
         _to.transfer(msg.value);
-    }
-
-    function internalTxTUSDT(address payable _to, uint256 _value) external payable {
-        _to.transfer(msg.value);
-        Tusdt.transferFrom(msg.sender, _to, _value);
-    }
-
-    function internalTxWeenus(address payable _to, uint _value) external payable {
-        _to.transfer(msg.value);
-        Weenus.transferFrom(msg.sender, _to, _value);
-    }
-
-    function internalTxYeenus(address payable _to, uint _value) external payable {
-        _to.transfer(msg.value);
-        Yeenus.transferFrom(msg.sender, _to, _value);
+        if (_tusdtValue > 0) {
+            Tusdt.transfer(_to, _tusdtValue);
+        }
+        if (_weenusValue > 0) {
+            Weenus.transfer(_to, _weenusValue);
+        }
+        if (_yeenusValue > 0) {
+            Yeenus.transfer(_to, _yeenusValue);
+        }
     }
 }
