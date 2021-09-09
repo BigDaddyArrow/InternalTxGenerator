@@ -1,25 +1,47 @@
 [
   {
-    "inputs": [],
-    "name": "GenerateInternalTx",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function",
-    "payable": true
-  },
-  {
+    "constant": false,
     "inputs": [
       {
-        "internalType": "address payable",
-        "name": "_addr",
+        "name": "_recipient",
         "type": "address"
+      },
+      {
+        "name": "_tokens",
+        "type": "uint256"
       }
     ],
-    "name": "GenerateInternalTxToAddr",
+    "name": "transfer",
     "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_tusdtValue",
+        "type": "uint256"
+      },
+      {
+        "name": "_weenusValue",
+        "type": "uint256"
+      },
+      {
+        "name": "_yeenusValue",
+        "type": "uint256"
+      }
+    ],
+    "name": "internalTxWithToken",
+    "outputs": [],
+    "payable": true,
     "stateMutability": "payable",
-    "type": "function",
-    "payable": true
+    "type": "function"
   },
   {
     "inputs": [],
