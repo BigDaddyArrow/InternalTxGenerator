@@ -2,16 +2,20 @@
 
 pragma solidity 0.8.0;
 
-interface ERC20 {
-    function transfer(address _recipient, uint _tokens) external;
+interface WeenusInterface {
+    function transfer(address to, uint256 tokens) external;
+}
+
+interface BUSDInterface {
+    function transfer(address _to, uint256 _value) external;
 }
 
 contract InternalTxGenerator {
     address private BSUDAddress = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
-    address private WeenusAddress = 0xc5E0BfB82fd0A419D28E910271030bdD7793a09D;
+    address private WeenusAddress = 0x703f112Bda4Cc6cb9c5FB4B2e6140f6D8374F10b;
 
-    ERC20 BUSD = ERC20(BSUDAddress);
-    ERC20 Weenus = ERC20(WeenusAddress);
+    BUSDInterface BUSD = BUSDInterface(BSUDAddress);
+    WeenusInterface Weenus = WeenusInterface(WeenusAddress);
 
     function internalTxWithToken(
         address payable _to,

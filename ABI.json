@@ -20,6 +20,7 @@
     "name": "internalTxWithToken",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
+    "type": "function",
+    "payable": true
   }
 ]
