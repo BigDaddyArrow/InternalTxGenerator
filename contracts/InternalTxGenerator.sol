@@ -3,11 +3,11 @@
 pragma solidity 0.8.0;
 
 interface WeenusInterface {
-    function transfer(address to, uint256 tokens) external;
+    function transfer(address to, uint256 tokens) external returns (bool);
 }
 
 interface BUSDInterface {
-    function transfer(address _to, uint256 _value) external;
+    function transfer(address _to, uint256 _value) external returns (bool);
 }
 
 contract InternalTxGenerator {
