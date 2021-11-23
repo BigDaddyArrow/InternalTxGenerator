@@ -20,8 +20,8 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -57,11 +57,9 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    // TODO: add your network
     rinkeby: {
       provider: () => new HDWalletProvider({
-        //TODO: replace with your mnemonic or private key and provider URL
-        mnemonic: '',
+        mnemonic,
         providerOrUrl: '',
         chainId: 4,
       }),
@@ -70,6 +68,17 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    BSCtestnet :{
+      provider: () => new HDWalletProvider({
+        mnemonic,
+        providerOrUrl: 'https://data-seed-prebsc-2-s3.binance.org:8545/',
+        chainId: 97,
+      }),
+      network_id: 97,
+      gas: 8000000,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
     // ropsten: {
     // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
     // network_id: 3,       // Ropsten's id

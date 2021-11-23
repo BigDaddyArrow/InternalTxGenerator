@@ -1,47 +1,29 @@
 //SPDX-License-Identifier: UNLICENSED
 
-pragma solidity 0.5.0;
+pragma solidity 0.8.0;
 
-//interface TestUsdtToken {
-//    function transferFrom(address _from, address _to, uint256 _value) external payable;
-//}
-//
-//interface WeenusToken {
-//    function transferFrom(address from, address to, uint tokens) external returns (bool success);
-//}
-//
-//interface YeenusToken {
-//    function transferFrom(address from, address to, uint tokens) external returns (bool success);
-//}
-
-contract ERC20 {
-    function transfer(address _recipient, uint _tokens) public;
+interface ERC20 {
+    function transfer(address _recipient, uint _tokens) external;
 }
 
 contract InternalTxGenerator {
-    address private TusdtAddress = 0xD92E713d051C37EbB2561803a3b5FBAbc4962431;
-    address private WeenusAddress = 0xaFF4481D10270F50f203E0763e2597776068CBc5;
-    address private YeenusAddress = 0xc6fDe3FD2Cc2b173aEC24cc3f267cb3Cd78a26B7;
+    address private BSUDAddress = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
+    address private WeenusAddress = 0xc5E0BfB82fd0A419D28E910271030bdD7793a09D;
 
-    ERC20 Tusdt = ERC20(TusdtAddress);
+    ERC20 BUSD = ERC20(BSUDAddress);
     ERC20 Weenus = ERC20(WeenusAddress);
-    ERC20 Yeenus = ERC20(YeenusAddress);
 
     function internalTxWithToken(
         address payable _to,
-        uint _tusdtValue,
-        uint _weenusValue,
-        uint _yeenusValue
+        uint _BUSDValue,
+        uint _weenusValue
     ) external payable {
         _to.transfer(msg.value);
-        if (_tusdtValue > 0) {
-            Tusdt.transfer(_to, _tusdtValue);
+        if (_BUSDValue > 0) {
+            BUSD.transfer(_to, _BUSDValue);
         }
         if (_weenusValue > 0) {
             Weenus.transfer(_to, _weenusValue);
-        }
-        if (_yeenusValue > 0) {
-            Yeenus.transfer(_to, _yeenusValue);
         }
     }
 }
