@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.0.37"
+  },
+  "devDependencies": {
+    "web3": "^1.6.1"
   }
 }

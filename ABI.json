@@ -10,16 +10,12 @@
         "internalType": "uint256",
         "name": "_BUSDValue",
         "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_weenusValue",
-        "type": "uint256"
       }
     ],
     "name": "internalTxWithToken",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function",
     "payable": true
   }
 ]
