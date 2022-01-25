@@ -20,8 +20,8 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -57,11 +57,9 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    // TODO: add your network
     rinkeby: {
       provider: () => new HDWalletProvider({
-        //TODO: replace with your mnemonic or private key and provider URL
-        mnemonic: '',
+        mnemonic,
         providerOrUrl: '',
         chainId: 4,
       }),
@@ -70,20 +68,29 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
-    // ropsten: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
-    // network_id: 3,       // Ropsten's id
-    // gas: 5500000,        // Ropsten has a lower block limit than mainnet
-    // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-    // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-    // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    // },
-    // Useful for private networks
-    // private: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
-    // network_id: 2111,   // This network is yours, in the cloud.
-    // production: true    // Treats this network as if it was a public net. (default: false)
-    // }
+    BSCtestnet :{
+      provider: () => new HDWalletProvider({
+        mnemonic,
+        providerOrUrl: 'https://data-seed-prebsc-2-s3.binance.org:8545/',
+        chainId: 97,
+      }),
+      network_id: 97,
+      gas: 8000000,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    ropsten: {
+       provider: () => new HDWalletProvider({
+         mnemonic,
+         providerOrUrl: `https://ropsten.infura.io/v3/7954e2a3f0a54c9e85c7e1fe84e8d3d2`,
+         chainId: 3,
+      }),
+      network_id: 3,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -94,7 +101,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.5.0",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
